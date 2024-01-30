@@ -16,9 +16,9 @@ const buttonIndexToJDImageMap: ButtonIndexToJDInterface = {
 // const postUrlHome = `${process.env.HOST}/api/home`;
 // const errorImageUrl = `${process.env.HOST}/images/error.png`;
 
-const postUrlApply = 'https://farlink.vercel.app/api/apply';
-const postUrlHome = 'https://farlink.vercel.app/api/home';
-const errorImageUrl = 'https://farlink.vercel.app/images/error.png';
+const postUrlApply = 'https://farlink.xyz/api/apply';
+const postUrlHome = 'https://farlink.xyz/api/home';
+const errorImageUrl = 'https://farlink.xyz/images/error.png';
 
 async function getJobsResponse(req: NextRequest): Promise<NextResponse> {
   // Step 2. Read the body from the Next Request
@@ -34,7 +34,7 @@ async function getJobsResponse(req: NextRequest): Promise<NextResponse> {
     // the message is valid
     const { buttonIndex, castId, fid } = message;
     const fileName = buttonIndexToJDImageMap[buttonIndex];
-    const imageUrl: string = `https://farlink.vercel.app/images/${fileName}`;
+    const imageUrl: string = `https://farlink.xyz/images/${fileName}`;
     const { data, error } = await supabase
       .from('applications')
       .insert([{ fc_id: fid, job_id: fileName, cast_id_fc_id: castId.fid }]);
