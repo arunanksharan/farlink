@@ -109,5 +109,6 @@ async function getJobsResponse(req: NextRequest): Promise<NextResponse> {
 export async function POST(req: NextRequest): Promise<Response> {
   return getJobsResponse(req);
 }
+export const GET = POST;
 
 export const dynamic = 'force-dynamic';
