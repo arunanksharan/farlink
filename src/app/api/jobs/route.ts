@@ -38,7 +38,8 @@ async function getJobsResponse(req: NextRequest): Promise<NextResponse> {
   const imageUrl: string = `https://farlink.xyz/images/${fileName}`;
   const { data, error } = await supabase
     .from('applications')
-    .insert([{ fc_id: fid, job_id: fileName }]);
+    .insert([{ fc_id: fid, job_id: fileName }])
+    .select();
   console.log('line 76 Inside jobs error:', { fc_id: fid, job_id: fileName });
 
   console.log('line 78 Inside jobs data:', data);
