@@ -12,22 +12,29 @@ const buttonIndexToJDImageMap: ButtonIndexToJDInterface = {
   4: 'more.png',
 };
 
-const postUrlApply = `${process.env.HOST}/api/apply`;
-const postUrlHome = `${process.env.HOST}/api/home`;
-const errorImageUrl = `${process.env.HOST}/images/error.png`;
+// const postUrlApply = `${process.env.HOST}/api/apply`;
+// const postUrlHome = `${process.env.HOST}/api/home`;
+// const errorImageUrl = `${process.env.HOST}/images/error.png`;
+
+const postUrlApply = 'https://farlink.vercel.app/api/apply';
+const postUrlHome = 'https://farlink.vercel.app/api/home';
+const errorImageUrl = 'https://farlink.vercel.app/images/error.png';
 
 async function getJobsResponse(req: NextRequest): Promise<NextResponse> {
   // Step 2. Read the body from the Next Request
   const body = await req.json();
+  console.log('Inside jobs body:', body);
   // Step 3. Validate the message
   const { isValid, message } = await getFrameMessage(body);
+  console.log('Inside jobs isValid:', isValid);
+  console.log('Inside jobs message:', message);
 
   // Step 4. Determine the experience based on the validity of the message
   if (isValid) {
     // the message is valid
     const { buttonIndex, castId, fid } = message;
     const fileName = buttonIndexToJDImageMap[buttonIndex];
-    const imageUrl: string = `${process.env.HOST}/images/${fileName}`;
+    const imageUrl: string = `https://farlink.vercel.app/images/${fileName}`;
     const { data, error } = await supabase
       .from('applications')
       .insert([{ fc_id: fid, job_id: fileName, cast_id_fc_id: castId.fid }]);

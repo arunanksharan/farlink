@@ -10,8 +10,8 @@ const buttonIndexToJDImageMap: ButtonIndexToJDInterface = {
   2: 'welcome.png',
 };
 
-const postUrl = `${process.env.HOST}/api/home`;
-const errorImageUrl = `${process.env.HOST}/images/error.png`;
+const postUrl = 'https://farlink.vercel.app/api/home';
+const errorImageUrl = 'https://farlink.vercel.app/images/error.png';
 
 async function getApplyResponse(req: NextRequest): Promise<NextResponse> {
   const body = await req.json();
@@ -25,7 +25,7 @@ async function getApplyResponse(req: NextRequest): Promise<NextResponse> {
 
     // Use imageUrl
     const fileName = buttonIndexToJDImageMap[buttonIndex];
-    const imageUrl: string = `${process.env.HOST}/images/${fileName}`;
+    const imageUrl: string = `https://farlink.vercel.app/images/${fileName}`;
     return new NextResponse(
       `<!DOCTYPE html>
     <html>

@@ -2,8 +2,8 @@
 import { getFrameMessage } from '@coinbase/onchainkit';
 import { NextRequest, NextResponse } from 'next/server';
 
-const imageUrl = `${process.env.HOST}/images/welcome.png`;
-const postUrl = `${process.env['HOST']}/api/jobs`;
+const imageUrl = 'https://farlink.vercel.app/images/welcome.png';
+const postUrl = 'https://farlink.vercel.app/api/jobs';
 
 async function getHomeResponse(req: NextRequest): Promise<NextResponse> {
   return new NextResponse(

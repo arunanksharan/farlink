@@ -4,7 +4,8 @@ import Image from 'next/image';
 const postUrl = `${process.env['HOST']}/api/jobs`;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const imageUrl = `${process.env['HOST']}/images/welcome.png`;
+  // const imageUrl = `${process.env['HOST']}/images/welcome.png`;
+  const imageUrl = 'https://farlink.vercel.app/images/welcome.png';
   return {
     title: 'Farlink',
     description: 'One Click Web3 Jobs!',
