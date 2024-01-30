@@ -15,19 +15,22 @@ const errorImageUrl = 'https://farlink.xyz/images/error.png';
 
 async function getApplyResponse(req: NextRequest): Promise<NextResponse> {
   const body = await req.json();
+  const { untrustedData: message } = body;
+  // Step 3. Validate the message
+  // const { isValid, message } = await getFrameMessage(body);
 
-  const { isValid, message } = await getFrameMessage(body);
+  //   const { isValid, message } = await getFrameMessage(body);
 
-  if (isValid) {
-    const { buttonIndex, castId, fid } = message;
+  //   if (isValid) {
+  const { buttonIndex, castId, fid } = message;
 
-    // Write to supabase database
+  // Write to supabase database
 
-    // Use imageUrl
-    const fileName = buttonIndexToJDImageMap[buttonIndex];
-    const imageUrl: string = `https://farlink.xyz/images/${fileName}`;
-    return new NextResponse(
-      `<!DOCTYPE html>
+  // Use imageUrl
+  const fileName = buttonIndexToJDImageMap[buttonIndex];
+  const imageUrl: string = `https://farlink.xyz/images/${fileName}`;
+  return new NextResponse(
+    `<!DOCTYPE html>
     <html>
       <head>
         <title>Farlinked!</title>
@@ -40,37 +43,37 @@ async function getApplyResponse(req: NextRequest): Promise<NextResponse> {
       </head>
       <body>Farlink</body>
     </html>`,
-      {
-        status: 200,
-        headers: {
-          'Content-Type': 'text/html',
-        },
-      }
-    );
-  } else {
-    // sorry, the message is not valid and it will be undefined
-    return new NextResponse(
-      `<!DOCTYPE html>
-      <html>
-        <head>
-          <title>Farlinked!</title>
-          <meta property="og:title" content="Farlink!" />
-          <meta property="og:image" content="${errorImageUrl}" />
-          <meta name="fc:frame" content="vNext" />
-          <meta name="fc:frame:image" content="${errorImageUrl}" />
-          <meta name="fc:frame:post_url" content="${postUrl}" />
-          <meta name="fc:frame:button:1" content="Home" />
-        </head>
-        <body>Farlink</body>
-      </html>`,
-      {
-        status: 200,
-        headers: {
-          'Content-Type': 'text/html',
-        },
-      }
-    );
-  }
+    {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/html',
+      },
+    }
+  );
+  //   } else {
+  // sorry, the message is not valid and it will be undefined
+  // return new NextResponse(
+  //   `<!DOCTYPE html>
+  //   <html>
+  //     <head>
+  //       <title>Farlinked!</title>
+  //       <meta property="og:title" content="Farlink!" />
+  //       <meta property="og:image" content="${errorImageUrl}" />
+  //       <meta name="fc:frame" content="vNext" />
+  //       <meta name="fc:frame:image" content="${errorImageUrl}" />
+  //       <meta name="fc:frame:post_url" content="${postUrl}" />
+  //       <meta name="fc:frame:button:1" content="Home" />
+  //     </head>
+  //     <body>Farlink</body>
+  //   </html>`,
+  //   {
+  //     status: 200,
+  //     headers: {
+  //       'Content-Type': 'text/html',
+  //     },
+  //   }
+  // );
+  //   }
 }
 
 export async function POST(req: NextRequest): Promise<Response> {
