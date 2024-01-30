@@ -33,12 +33,13 @@ async function getJobsResponse(req: NextRequest): Promise<NextResponse> {
   // Step 4. Determine the experience based on the validity of the message
   // if (isValid) {
   // the message is valid
-  const { buttonIndex, castId, fid } = message;
+  const { buttonIndex, fid } = message;
   const fileName = buttonIndexToJDImageMap[buttonIndex];
   const imageUrl: string = `https://farlink.xyz/images/${fileName}`;
   const { data, error } = await supabase
     .from('applications')
-    .insert([{ fc_id: fid, job_id: fileName, cast_id_fc_id: castId.fid }]);
+    .insert([{ fc_id: fid, job_id: fileName }]);
+  console.log('line 76 Inside jobs error:', { fc_id: fid, job_id: fileName });
 
   console.log('line 78 Inside jobs data:', data);
 

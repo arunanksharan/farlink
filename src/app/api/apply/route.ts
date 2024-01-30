@@ -29,6 +29,7 @@ async function getApplyResponse(req: NextRequest): Promise<NextResponse> {
   // Use imageUrl
   const fileName = buttonIndexToJDImageMap[buttonIndex];
   const imageUrl: string = `https://farlink.xyz/images/${fileName}`;
+
   return new NextResponse(
     `<!DOCTYPE html>
     <html>
